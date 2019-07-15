@@ -1,6 +1,13 @@
-.Main_page .leaftlet-container {
+/* .Main_page .leaftlet-container {
   height: 1000px;
   width: 1000px;
+  margin: 0;
+  padding: 20px;
+} */
+
+.Main_page #map {
+  height: 80%;
+  width: 100%;
   margin: 0;
   padding: 20px;
 }
