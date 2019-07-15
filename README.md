@@ -62,15 +62,15 @@ Designing a local state in our main component, and corresponding action/reducers
 
 * July 13 - July 14 [weekend]
 
-Create GitHub repository and add all members as collaborators. **Onur**
-Create rules for GitHub workflow. **Onur**
-Create Slack group for better communication. **Onur**
-Setup project base through MERN tutorials on AppAcademy Open. **Onur**
-Review Leaflet tutorials and integrate Leaflet to React. **Onur**
-Review BART API properties to be able to fetch station data. **Onur**
-Create api_util, action & reducer files to generate station markers. **Onur**
-Add Transit map and station markers to {MainPage} React component. **Onur**
-Create a Google doc for production README. **Onur**
+* Create GitHub repository and add all members as collaborators. **Onur**
+* Create rules for GitHub workflow. **Onur**
+* Create Slack group for better communication. **Onur**
+* Setup project base through MERN tutorials on AppAcademy Open. **Onur**
+* Review Leaflet tutorials and integrate Leaflet to React. **Onur**
+* Review BART API properties to be able to fetch station data. **Onur**
+* Create api_util, action & reducer files to generate station markers. **Onur**
+* Add Transit map and station markers to {MainPage} React component. **Onur**
+* Create a Google doc for production README. **Onur**
 
 
 * July 15 [day 3]
