@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const decodedUser = jwt_decode(localStorage.jwtToken);
     const preloadedState = {
       stations: { },
-      session: { isAuthenticated: true, user: decodedUser }
+      session: { isAuthenticated: true, user: decodedUser },
+      space_station: { }
     };
     
     store = configureStore(preloadedState);
