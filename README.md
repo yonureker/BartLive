@@ -57,10 +57,13 @@ Although, BART provides real time data on arrival times; it doesn't provide the 
 
 
 # Group Members and Work Breakdown
+
+**Eugene Artin, Joe Bumbaca, Onur Eker, Vlad**
+
 Eugene: Backend design; writing thunk action creators and actions to hit Bart API endpoints and extract the relevant data
 Designing a local state in our main component, and corresponding action/reducers, to accommodate real-time changes in Bart schedule
 
-* July 13 - July 14 [weekend]
+### July 13 - July 14 [weekend]
 
 * Create GitHub repository and add all members as collaborators. **Onur**
 * Create rules for GitHub workflow. **Onur**
@@ -73,18 +76,14 @@ Designing a local state in our main component, and corresponding action/reducers
 * Create a Google doc for production README. **Onur**
 
 
-* July 15 [day 3]
+###  July 15 [day 3]
 
 
 
 
-* July 16 [day 4]
+###  July 16 [day 4]
 
 
 
 
-* July 17 [day 5]
-
-
-
-
+###  July 17 [day 5]
