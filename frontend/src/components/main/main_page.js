@@ -31,15 +31,26 @@ class MainPage extends React.Component {
   }
 
   render() {
-    console.log(Object.values(this.props.stations))
 
     Object.values(this.props.stations).map((el) => {
       this.circleMarker = L.circleMarker([el.gtfs_latitude, el.gtfs_longitude], {
         color: 'blue',
-        // fillColor: '#f03',
+        // fillColor: 'blue',
         // fillOpacity: 0.5,
         radius: 6
     }).addTo(this.mymap);
+
+  //   var LeafIcon = L.Icon.extend({
+  //     options: {
+  //        iconSize:     [38, 95],
+  //        shadowSize:   [50, 64],
+  //        iconAnchor:   [22, 94],
+  //        shadowAnchor: [4, 62],
+  //        popupAnchor:  [-3, -76]
+  //     }
+  // });
+
+  
     });
     return (
       <div id="map">
