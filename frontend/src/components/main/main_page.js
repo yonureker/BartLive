@@ -1,18 +1,22 @@
 import React from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      stations : []
+      stations : [],
+      space_station: []
     }
   }
 
   componentWillMount(){
     this.props.fetchStations();
+    this.props.fetchSpaceStation();
+    
   };
 
 
@@ -28,6 +32,14 @@ class MainPage extends React.Component {
       }),
       ]
     });
+
+    
+
+    // this.interval = setInterval(() => this.setState({ time: Date.now() }), 2000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
@@ -35,12 +47,14 @@ class MainPage extends React.Component {
     Object.values(this.props.stations).map((el) => {
       this.circleMarker = L.circleMarker([el.gtfs_latitude, el.gtfs_longitude], {
         color: 'blue',
-        // fillColor: 'blue',
-        // fillOpacity: 0.5,
-        radius: 6
+        fillColor: 'blue',
+        fillOpacity: 0.7,
+        radius: 6,
+        opacity: 0.2
     }).addTo(this.mymap);
+    });
 
-  //   var LeafIcon = L.Icon.extend({
+     //   var LeafIcon = L.Icon.extend({
   //     options: {
   //        iconSize:     [38, 95],
   //        shadowSize:   [50, 64],
@@ -49,9 +63,6 @@ class MainPage extends React.Component {
   //        popupAnchor:  [-3, -76]
   //     }
   // });
-
-  
-    });
     return (
       <div id="map">
         
