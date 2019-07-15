@@ -6,7 +6,7 @@ import MainPage from './main_page';
 const mapStateToProps = (state) => {
   return {
     stations: Object.values(state.stations),
-    space_station 
+    space_station: state.space_station
   };
 };
 
