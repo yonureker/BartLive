@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchStations, fetchRouteInfo } from '../../actions/station_actions'
+import { fetchStations, fetchRouteInfo, fetchInitialStationDataSouth } from '../../actions/station_actions'
 import { fetchSpaceStation } from '../../actions/space_station_actions';
 import MainPage from './main_page';
 
@@ -16,7 +16,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchStations: () => dispatch(fetchStations()),
     fetchRouteInfo: () => dispatch(fetchRouteInfo()),
-    fetchSpaceStation: () => dispatch(fetchSpaceStation())
+    fetchSpaceStation: () => dispatch(fetchSpaceStation()),
+    fetchInitialStationDataSouth: () => dispatch(fetchInitialStationDataSouth())
   };
 };
 
