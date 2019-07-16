@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
     stations: Object.values(state.stations),
     space_station: state.space_station,
     nextStation: state.nextStation,
-    route_info: state.route_info
+    route_info: state.route_info,
   };
 };
 
