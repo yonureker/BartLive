@@ -8,18 +8,22 @@ class MainPage extends React.Component {
 
     this.state = {
       stations: [],
-      space_station: {longitude: "-43.7833", latitude: "-5.3823"}
+      space_station: {longitude: "-43.7833", latitude: "-5.3823"},
+      map : this.mymap,
+      marker: this.circleMarker
     };
   }
 
   componentWillMount() {
     this.props.fetchSpaceStation().then((response) => this.setState({space_station: response.space_station}));
     this.props.fetchStations().then((response) => this.setState({stations: response.stations}));
+    this.props.fetchOurStations();
   }
 
   componentDidMount() {
 
     
+
     // this.mymap = L.map("map", {
     //   center: [37.844443, -122.252341],
     //   zoom: 11,
@@ -36,7 +40,7 @@ class MainPage extends React.Component {
 
     this.mymap = L.map("map", {
       center: [37.844443, -122.252341],
-      zoom: 1,
+      zoom: 3,
       layers: [
         L.tileLayer(
           "https://mt1.google.com/vt/lyrs=m@121,transit|vm:1&hl=en&opts=r&x={x}&y={y}&z={z}",
@@ -60,7 +64,6 @@ class MainPage extends React.Component {
 
 
   render() {
-
     this.props.stations.map(el => {
       return (this.circleMarker = L.circleMarker(
         [el.gtfs_latitude, el.gtfs_longitude],
@@ -74,7 +77,8 @@ class MainPage extends React.Component {
       )).addTo(this.mymap);
     });
 
-      
+
+    // this.state.map.removeLayer(this.state.marker);
 
       this.props.stations.map(el => {
         return (this.circleMarker = L.circleMarker(
@@ -88,11 +92,11 @@ class MainPage extends React.Component {
           }
         )).addTo(this.mymap);
       });
-    
 
-      console.log(this.props.space_station)
-
-      return <div id="map" />;
+      return <div>
+              <div id="map"/>
+              <div>{this.props.nextStation.name}</div>
+            </div>;
 
   }
 }
