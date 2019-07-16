@@ -17,7 +17,7 @@ class MainPage extends React.Component {
   componentWillMount() {
     this.props.fetchSpaceStation().then((response) => this.setState({space_station: response.space_station}));
     this.props.fetchStations().then((response) => this.setState({stations: response.stations}));
-    this.props.fetchOurStations();
+    this.props.fetchRouteInfo();
   }
 
   componentDidMount() {
@@ -95,7 +95,7 @@ class MainPage extends React.Component {
 
       return <div>
               <div id="map"/>
-              <div>{this.props.nextStation.name}</div>
+              {/* <div>{this.props.route_info.name}</div> */}
             </div>;
 
   }
