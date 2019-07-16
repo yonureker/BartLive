@@ -17,13 +17,13 @@ class MainPage extends React.Component {
   componentWillMount() {
     this.props.fetchSpaceStation().then((response) => this.setState({space_station: response.space_station}));
     this.props.fetchStations().then((response) => this.setState({stations: response.stations}));
-    this.props.fetchRouteInfo();
+    // this.props.fetchRouteInfo().then(response => this.setState({route_info: response.route_info}));
   }
 
   componentDidMount() {
 
     
-
+    this.props.fetchRouteInfo().then(response => this.setState({ route_info: response}));
     // this.mymap = L.map("map", {
     //   center: [37.844443, -122.252341],
     //   zoom: 11,
@@ -93,10 +93,15 @@ class MainPage extends React.Component {
         )).addTo(this.mymap);
       });
 
-      return <div>
+    const stations = (this.props.route_info.millbreaAntioch) ?
+     <div>{this.props.route_info["millbreaAntioch"].northbound.stations.EMBR.waypoints}</div> :
+    <div>Loading . . . </div>
+
+      return (<div>
               <div id="map"/>
-              {/* <div>{this.props.route_info.name}</div> */}
-            </div>;
+              <div>{stations}</div>
+              {/* <div>{this.props.route_info["millbreaAntioch"]}</div> */}
+              </div>);
 
   }
 }
