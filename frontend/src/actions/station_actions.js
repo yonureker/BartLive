@@ -2,6 +2,7 @@ import { getStations, getOurStations } from '../util/station_api_util';
 
 export const RECEIVE_STATIONS = "RECEIVE_STATIONS";
 export const RECEIVE_OUR_STATIONS = "RECEIVE_OUR_STATIONS";
+export const RECEIVE_INITIAL_SB_INFO = "RECEIVE_INITIAL_SB_INFO";
 
 export const receiveStations = stations => ({
   type: RECEIVE_STATIONS,
@@ -25,3 +26,5 @@ export const fetchOurStations = () => dispatch => (
     .then(station => dispatch(receiveOurStations(station)))
     .catch(err => console.log(err))
 );
+
+export 
