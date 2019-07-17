@@ -21,4 +21,13 @@ export const getInitialStationDataSouth = () => {
   return Promise.all(promisesS);
 };
 
+export const getInitialStationDataNorth = () => {
+  const promisesN = [];
+  for (let i = 0; i < 9; i++) {
+    promisesN.push(axios.get(`https://api.bart.gov/api/etd.aspx?cmd=etd&orig=${stationsSouthBound.reverse()[i]}&key=MW9S-E7SL-26DU-VV8V&dir=n&json=y`))
+  };
+  return Promise.all(promisesN);
+};
+
+
 

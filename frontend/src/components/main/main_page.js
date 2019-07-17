@@ -19,6 +19,7 @@ class MainPage extends React.Component {
     this.props.fetchStations().then((response) => this.setState({stations: response.stations}));
     this.props.fetchRouteInfo();
     this.props.fetchInitialStationDataSouth();
+    this.props.fetchInitialStationDataNorth();
   }
 
   componentDidMount() {
