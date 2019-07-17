@@ -1,17 +1,16 @@
 import React from "react";
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Map, TileLayer, Marker, Popup, CircleMarker, LayersControl } from 'react-leaflet';
+import { Map, TileLayer , CircleMarker } from 'react-leaflet';
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      stations: [{longitude: "-43.7833", latitude: "-5.3823"}],
-      space_station: {longitude: "-43.7833", latitude: "-5.3823"},
-      map : this.mymap,
-      marker: this.circleMarker
+      // stations: [{longitude: "-43.7833", latitude: "-5.3823"}],
+      // space_station: {longitude: "-43.7833", latitude: "-5.3823"},
+      // map : this.mymap,
+      // marker: this.circleMarker
     };
   }
 
@@ -24,7 +23,7 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.props.fetchSpaceStation(), 3000)
+    this.interval = setInterval(() => this.props.fetchSpaceStation(), 10000)
   }
 
   componentWillUnmount() {
@@ -53,7 +52,7 @@ class MainPage extends React.Component {
           </CircleMarker>
         )}
 
-          <CircleMarker key={10} center={[this.props.space_station.latitude, this.props.space_station.longitude]} radius={7}>
+          <CircleMarker key={10} center={[this.props.space_station.latitude, this.props.space_station.longitude]} radius={12}>
           </CircleMarker>
       </Map>
     )
