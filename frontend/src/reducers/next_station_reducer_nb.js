@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import { RECEIVE_INITIAL_NB_INFO } from '../actions/station_actions';
 
 const NextStationsReducer = (state = {}, action) => {
