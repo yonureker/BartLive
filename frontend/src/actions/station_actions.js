@@ -4,27 +4,24 @@ const stationsSouthBound = ["ANTC", "PCTR", "PITT", "NCON", "CONC", "PHIL",
   "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN",
   "BALB", "DALY", "COLM", "SSAN", "SBRN", "SFIA", "MLBR"];
 const nextTrain = (etas) => {
-
   let earliestDep = etas[0][1];
   if (earliestDep === 'leaving') { 
-    const prevStationIdx = stationsSouthBound.indexOf(etas[0][0]) - 1;
     return {
-      prevStation: stationsSouthBound[prevStationIdx],
+      prevStation: etas[0][0],
       nextStation: {
-        nextStationAbbrev: etas[0][0],
-        nextStationEstimatedDep: etas[0][1]
+        nextStationAbbrev: etas[1][0],
+        nextStationEstimatedDep: etas[1][1]
       }
     }
    }
   let idx;
   for (let i = 1; i < etas.length; i++) {
     if (etas[i][1] === 'leaving') { 
-      const prevStationIdx = stationsSouthBound.indexOf(etas[i][0]) - 1;
       return {
-        prevStation: stationsSouthBound[prevStationIdx],
+        prevStation: etas[i][0],
         nextStation: {
-          nextStationAbbrev: etas[i][0],
-          nextStationEstimatedDep: etas[i][1]
+          nextStationAbbrev: etas[i+1][0],
+          nextStationEstimatedDep: etas[i+1][1]
         }
       }
     }
