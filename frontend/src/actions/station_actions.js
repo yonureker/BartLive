@@ -1,30 +1,31 @@
-import { getStations, getRouteInfo, getInitialStationDataSouth } from '../util/station_api_util';
+import { getStations, getRouteInfo, getInitialStationDataSouth, getInitialStationDataNorth } from '../util/station_api_util';
+export const RECEIVE_STATIONS = "RECEIVE_STATIONS";
+export const RECEIVE_INITIAL_SB_INFO = "RECEIVE_INITIAL_SB_INFO";
+export const RECEIVE_INITIAL_NB_INFO = "RECEIVE_INITIAL_NB_INFO";
+export const RECEIVE_ROUTE_INFO = "RECEIVE_ROUTE_INFO";
 const stationsSouthBound = ["ANTC", "PCTR", "PITT", "NCON", "CONC", "PHIL",
   "WCRK", "LAFY", "ORIN", "ROCK", "MCAR", "19TH", "12TH", "WOAK",
   "EMBR", "MONT", "POWL", "CIVC", "16TH", "24TH", "GLEN",
   "BALB", "DALY", "COLM", "SSAN", "SBRN", "SFIA", "MLBR"];
 const nextTrain = (etas) => {
-
   let earliestDep = etas[0][1];
   if (earliestDep === 'leaving') { 
-    const prevStationIdx = stationsSouthBound.indexOf(etas[0][0]) - 1;
     return {
-      prevStation: stationsSouthBound[prevStationIdx],
+      prevStation: etas[0][0],
       nextStation: {
-        nextStationAbbrev: etas[0][0],
-        nextStationEstimatedDep: etas[0][1]
+        nextStationAbbrev: etas[1][0],
+        nextStationEstimatedDep: etas[1][1]
       }
     }
    }
   let idx;
   for (let i = 1; i < etas.length; i++) {
     if (etas[i][1] === 'leaving') { 
-      const prevStationIdx = stationsSouthBound.indexOf(etas[i][0]) - 1;
       return {
-        prevStation: stationsSouthBound[prevStationIdx],
+        prevStation: etas[i][0],
         nextStation: {
-          nextStationAbbrev: etas[i][0],
-          nextStationEstimatedDep: etas[i][1]
+          nextStationAbbrev: etas[i+1][0],
+          nextStationEstimatedDep: etas[i+1][1]
         }
       }
     }
@@ -43,9 +44,7 @@ const nextTrain = (etas) => {
   }
 }
 
-export const RECEIVE_STATIONS = "RECEIVE_STATIONS";
-export const RECEIVE_INITIAL_SB_INFO = "RECEIVE_INITIAL_SB_INFO";
-export const RECEIVE_ROUTE_INFO = "RECEIVE_ROUTE_INFO";
+
 
 export const receiveStations = stations => ({
   type: RECEIVE_STATIONS,
@@ -59,6 +58,11 @@ export const receiveRouteInfo = info => ({
 
 export const receiveInitialSBInfo = info => ({
   type: RECEIVE_INITIAL_SB_INFO,
+  info 
+})
+
+export const receiveInitialNBInfo = info => ({
+  type: RECEIVE_INITIAL_NB_INFO,
   info 
 })
 
@@ -97,6 +101,31 @@ export const fetchInitialStationDataSouth = () => dispatch => (
             return extractETD(stn, response);
           })
         return dispatch(receiveInitialSBInfo((nextTrain(etas))));
+      })
+);
+
+export const fetchInitialStationDataNorth = () => dispatch => (
+  getInitialStationDataNorth()
+    .then(
+      responses => {
+        const etas = [];
+        const extractETD = (stn, response) => {
+          const etds = response.data.root.station[0].etd;
+          if (etds) {
+            const currETD = etds.filter(stn => stn.abbreviation === 'ANTC');
+            if (currETD.length) {
+              const etd = currETD[0].estimate[0];
+              const eta = etd.minutes;
+              etas.push([stn, eta]);
+            }
+          }
+        }
+        responses.forEach(
+          response => {
+            const stn = response.data.root.station[0].abbr;
+            return extractETD(stn, response);
+          })
+        return dispatch(receiveInitialNBInfo((nextTrain(etas))));
       })
 );
 
