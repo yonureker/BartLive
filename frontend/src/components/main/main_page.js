@@ -17,7 +17,8 @@ class MainPage extends React.Component {
   componentWillMount() {
     this.props.fetchSpaceStation().then((response) => this.setState({space_station: response.space_station}));
     this.props.fetchStations().then((response) => this.setState({stations: response.stations}));
-    // this.props.fetchRouteInfo().then(response => this.setState({route_info: response.route_info}));
+    this.props.fetchRouteInfo().then(response => this.setState({route_info: response.route_info}));
+    this.props.fetchInitialStationDataSouth();
   }
 
   componentDidMount() {
