@@ -1,21 +1,17 @@
 import React from 'react';
-import TweetBox from '../tweets/tweet_box';
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            tweets: []
         }
     }
     
     componentWillMount() {
-        this.props.fetchUserTweets(this.props.currentUser.id);
     }
 
     componentWillReceiveProps(newState) {
-        this.setState({ tweets: newState.tweets });
     }   
     
     render() {
@@ -25,9 +21,6 @@ class Profile extends React.Component {
           return (
             <div>
               <h2>All of This User's Tweets</h2>
-              {this.state.tweets.map(tweet => (
-                <TweetBox key={tweet._id} text={tweet.text} />
-              ))}
             </div>
           );
         }
